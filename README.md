@@ -1,12 +1,12 @@
-# Ready Tensor RAG Demo
+# RAG Demo
 
-This project demonstrates a retrieval-augmented generation (RAG) workflow that answers questions about the U.S. Navy BUPERSINST 1900.8 policy manual. A Jupyter notebook orchestrates document ingestion, chunking, embedding, and querying with LangChain, while the final cell exposes an interactive Gradio chatbot powered by Groq’s Llama 3.1 model. Use it to explore the policy quickly without manually scanning the PDF.
+This project demonstrates a retrieval-augmented generation (RAG) workflow that answers questions about the U.S. Navy BUPERSINST 1900.8 policy manual. A Jupyter notebook orchestrates document ingestion, chunking, embedding, and querying with LangChain, while the final cell exposes an interactive Gradio chatbot powered by Meta's Llama-3.1-8B model hosted by Groq. Use it to explore the policy quickly without manually scanning the PDF.
 
 ## Key Features
 - Loads and inspects the BUPERSINST 1900.8 PDF to verify the source material.
 - Splits the document into semantic chunks and embeds them with OpenAI’s `text-embedding-3-large`.
 - Persists embeddings to both Chroma (on-disk) and an in-memory vector store for fast retrieval.
-- Generates grounded answers by combining retrieved context with Groq’s Llama 3.1 model.
+- Generates grounded answers by combining retrieved context with Meta’s Llama-3.1-8B model.
 - Provides a Gradio UI so non-technical users can chat with the policy document.
 
 ## Requirements
@@ -14,7 +14,7 @@ This project demonstrates a retrieval-augmented generation (RAG) workflow that a
 - API keys stored in environment variables:
   - `OPENAI_API_KEY`
   - `GROQ_API_KEY`
-- Python dependencies (install with `pip install -r requirements.txt` if you add one, or individually):
+- Python dependencies (install with `pip install -r requirements.txt`, or individually):
   - `gradio`
   - `chromadb`
   - `langchain`, `langchain-openai`, `langchain-groq`, `langchain-community`, `langchain-core`
@@ -36,9 +36,9 @@ This project demonstrates a retrieval-augmented generation (RAG) workflow that a
    ```
 
 ## Running the Notebook
-1. Launch Jupyter Lab or Notebook from the project root:
+1. Launch Jupyter Notebook from the project root:
    ```bash
-   jupyter lab
+   jupyter notebook
    ```
 2. Open `groq_RAG.ipynb` and run the cells top to bottom.
 3. After the embedding step completes, you can issue sample queries from within the notebook to verify the system responses.
@@ -53,10 +53,8 @@ This project demonstrates a retrieval-augmented generation (RAG) workflow that a
 ## Repository Layout
 - `groq_RAG.ipynb` – main notebook with ingestion, embedding, querying, and UI.
 - `chroma.sqlite3` – persisted Chroma database populated when the notebook runs.
-- `app.py`, `Hello.py`, `test_script.py` – placeholder or exploratory files from early experimentation.
-- `LoTR text/`, `archive (2)/`, and `40ff4286-ae02-4d93-a6a6-1b2121564a4b/` – sample data or scratch assets (not required for the RAG flow).
 
 ## Next Steps
-- Add a `requirements.txt` or `pyproject.toml` to make dependency installation reproducible.
+- Add a `requirements.txt` to make dependency installation reproducible.
 - Refine the chunking strategy (e.g., overlap or metadata enrichment) for better context retrieval.
-- Extend the Gradio UI with authorization, logging, or analytics if you plan to share it more broadly.
+- Expand RAG pipeline to include all Navy BUPERS instructions.
